@@ -12,14 +12,16 @@ const S = {
     font-weight: 700;
   `,
 };
-// const TopNavigation = dynamic(() => import("@/components/TopNavigation"), {
-//   ssr: false,
-// });
 
 const Main = () => {
+  
+  const TopNavigation = dynamic(() => import("@/containers/main/TopNavigation"), {
+    ssr: false,
+  });
 
   return (
     <S.Container>
+      <TopNavigation/>
       Main
     </S.Container>
   );
