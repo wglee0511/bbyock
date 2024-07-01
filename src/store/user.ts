@@ -1,11 +1,11 @@
-import { SajuResult } from "@/lib/saju";
+import { SaJuElement, SajuResult } from "@/lib/saju";
 import { create } from "zustand";
-import { devtools } from "zustand/middleware";
-
+import { createJSONStorage, persist, devtools } from "zustand/middleware";
 type UserValueType = {
   user?: {
     name: string;
     result: SajuResult;
+    saju: SaJuElement;
   };
 };
 
@@ -17,11 +17,13 @@ const initialUserState: UserValueType = {
 
 export const useUserStore = create<UserType>()(
   devtools(
-    () => ({
-      ...initialUserState,
-    }),
-    {
-      name: "UserStore",
-    },
+    persist(
+      () => ({
+        ...initialUserState,
+      }),
+      {
+        name: "UserStore",
+      },
+    ),
   ),
 );

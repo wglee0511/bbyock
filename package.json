@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "dayjs": "^1.11.11",
+    "korean-lunar-calendar": "^0.3.6",
     "lodash": "^4.17.21",
     "next": "14.2.4",
     "react": "^18",

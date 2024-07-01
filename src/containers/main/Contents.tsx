@@ -1,17 +1,14 @@
 import Divider from "@/components/Divider";
 import ContentsWrapper from "@/components/Template/ContentsWrapper";
 import Text from "@/components/Text";
-import {
-  DateOfBirth,
-  SaJu,
-  SajuElementCounts,
-  analyzeElements,
-  calculateSaJu,
-  getElementCounts,
-} from "@/lib/saju";
+import { getYearMonthDateTime } from "@/lib/date";
+import { SA_JU_RESULT_URL } from "@/lib/routers";
+import { analyzeElements, calculateSaJu, getElementCounts } from "@/lib/saju";
+import { useUserStore } from "@/store";
 import { CONTENT_MAX_WIDTH } from "@/style/base";
 import { COLORS } from "@/style/colors";
 import { map } from "lodash";
+import { useRouter } from "next/navigation";
 import React, { ReactElement } from "react";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
@@ -23,7 +20,7 @@ const S = {
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    width: ${CONTENT_MAX_WIDTH}px;
+    max-width: ${CONTENT_MAX_WIDTH}px;
     height: calc(100vh - 170px);
   `,
   Form: styled.form`
@@ -31,10 +28,10 @@ const S = {
   `,
   Input: styled.input``,
   TextInput: styled.input`
-    min-width: 287px;
+    max-width: 287px;
   `,
   NumberInput: styled.input`
-    flex: 1;
+    max-width: 50px;
   `,
   InputContainer: styled.div`
     width: 100%;
@@ -61,12 +58,39 @@ const S = {
 };
 
 const Contents = () => {
+  const router = useRouter();
   const { register, handleSubmit } = useForm();
 
   const genders: Gender[] = ["male", "female"];
-
   const onSubmitForm = handleSubmit((data) => {
-    console.log("data: ", data);
+    const {
+      birthDate,
+      gender,
+      hasBirthDateTime,
+      hour,
+      isLeapYear,
+      isLunar,
+      minute,
+      name,
+    } = data;
+
+    const convertMinute = minute ? minute : "00";
+    const convertHour = hour ? hour : "00";
+    const timeValue = isLunar ? "00:00" : `${convertHour}:${convertMinute}`;
+    const sajuDate = getYearMonthDateTime(birthDate, timeValue, isLunar);
+    const saju = calculateSaJu(sajuDate);
+    const counts = getElementCounts(saju);
+    const result = analyzeElements(counts);
+
+    useUserStore.setState({
+      user: {
+        name: data.name,
+        result,
+        saju,
+      },
+    });
+
+    router.push(SA_JU_RESULT_URL);
   });
 
   const WithLabel = ({
@@ -169,14 +193,14 @@ const Contents = () => {
               <div style={{ display: "flex", alignItems: "center" }}>
                 <S.NumberInput
                   type="number"
-                  {...register("hour", { required: true, max: 24 })}
+                  {...register("hour", { max: 24 })}
                 />
                 <Text fontSize={20} fontWeight={400} color={COLORS.black}>
                   :
                 </Text>
                 <S.NumberInput
                   type="number"
-                  {...register("minute", { required: true, max: 60 })}
+                  {...register("minute", { max: 60 })}
                 />
                 <Divider horizontal={20} />
                 <div

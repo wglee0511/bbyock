@@ -12,6 +12,13 @@ export interface SaJu {
   hour: SajuKey;
 }
 
+export interface SaJuElement {
+  year: string;
+  month: string;
+  day: string;
+  hour: string;
+}
+
 export interface DateOfBirth {
   year: number;
   month: number;
@@ -162,7 +169,7 @@ export function calculateSaJu(dob: DateOfBirth): {
   };
 }
 
-export function getElementCounts(saJu: SaJu): SajuElementCounts {
+export function getElementCounts(saJu: SaJuElement): SajuElementCounts {
   const counts: SajuElementCounts = {
     wood: 0,
     fire: 0,
