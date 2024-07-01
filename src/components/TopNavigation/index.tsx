@@ -3,6 +3,7 @@ import Text from "@/components/Text";
 import { COLORS } from "@/style/colors";
 import React from "react";
 import styled from "styled-components";
+import { TopNavigationProps } from "./type";
 
 const S = {
   container: styled.div`
@@ -19,7 +20,7 @@ const S = {
   `,
 };
 
-const TopNavigation = () => {
+const TopNavigation = ({ title }: TopNavigationProps) => {
   return (
     <S.container>
       <S.Inner>
@@ -33,7 +34,7 @@ const TopNavigation = () => {
         </Text>
         <Divider horizontal={22} />
         <Text fontSize={20} fontWeight={400} color={COLORS.black}>
-          부족한 오행을 채워주는 소품샵
+          {title}
         </Text>
       </S.Inner>
     </S.container>

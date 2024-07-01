@@ -10,21 +10,23 @@ const S = {
     position: relative;
     font-size: 30px;
     font-weight: 700;
+    overflow-y: scroll;
   `,
 };
 
 const Main = () => {
-  const TopNavigation = dynamic(
-    () => import("@/containers/main/TopNavigation"),
-    {
-      ssr: false,
-    },
-  );
+  const TopNavigation = dynamic(() => import("@/components/TopNavigation"), {
+    ssr: false,
+  });
+
+  const Contents = dynamic(() => import("@/containers/main/Contents"), {
+    ssr: false,
+  });
 
   return (
     <S.Container>
-      <TopNavigation />
-      Main
+      <TopNavigation title="부족한 오행을 채워주는 소품샵" />
+      <Contents />
     </S.Container>
   );
 };
