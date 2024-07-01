@@ -8,6 +8,14 @@ export const COLORS_SA_JU: SajuColor = {
   fire: "#FF0202",
 };
 
+export const COLORS_SA_JU_KOREAN: SajuColor = {
+  wood: "초록색",
+  earth: "노랑색",
+  metal: "흰색",
+  water: "검은색",
+  fire: "빨강색",
+};
+
 type SajuColor = {
   [key in SajuKey]: string;
 };

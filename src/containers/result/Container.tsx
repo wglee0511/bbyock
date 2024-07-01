@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Detail from "./Detail";
 import Summary from "./Summary";
 import Divider from "@/components/Divider";
+import Description from "./Description";
 
 const S = {
   Container: styled.div`
@@ -21,8 +22,10 @@ const Container = () => {
     <ContentsWrapper>
       <S.Container>
         <Detail />
-        <Divider vertical={57} />
+        <Divider vertical={50} />
         <Summary />
+        <Divider vertical={50} />
+        <Description />
       </S.Container>
     </ContentsWrapper>
   );
