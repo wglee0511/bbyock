@@ -1,17 +1,14 @@
-import React from 'react';
+import React from "react";
 
-import styled, { css } from 'styled-components';
+import styled, { css } from "styled-components";
 
-import {
-  TextProps,
-  TextStyleProps,
-} from './type';
+import { TextProps, TextStyleProps } from "./type";
 
 const S = {
   Container: styled.div<TextStyleProps>`
     display: flex;
-    font-family: 'Pretendard';
-    font-size: ${(props) => props.fontSize};
+    font-family: "Pretendard";
+    font-size: ${(props) => props.fontSize}px;
     font-weight: ${(props) => props.fontWeight};
     text-align: ${(props) => props.textAlign};
     line-height: ${(props) => props.lineHeight};
@@ -19,29 +16,37 @@ const S = {
     word-break: ${(props) => props.wordBreak};
     letter-spacing: ${(props) => props.letterSpacing};
     color: ${(props) => props.color};
-    justify-content: ${(props) => (props.justifyContent ? props.justifyContent : 'flex-start')};
-    align-items: ${(props) => (props.alignItems ? props.alignItems : 'normal')};
+    justify-content: ${(props) =>
+      props.justifyContent ? props.justifyContent : "flex-start"};
+    align-items: ${(props) => (props.alignItems ? props.alignItems : "normal")};
     text-decoration: ${(props) => props.textDecoration};
 
-    ${(props) => props.maxWidth && css`
-      max-width: ${props.maxWidth};
-    `};
-    
-    ${(props) => props.numberOfLines && props.numberOfLines > 1 && css`
-      display: -webkit-box;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      -webkit-line-clamp: ${props.numberOfLines};
-      -webkit-box-orient: vertical;
-      word-wrap:break-word;
-    `};
+    ${(props) =>
+      props.maxWidth &&
+      css`
+        max-width: ${props.maxWidth};
+      `};
 
-    ${(props) => props.numberOfLines === 1 && css`
-      display: block;
-      overflow: hidden; 
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    `}
+    ${(props) =>
+      props.numberOfLines &&
+      props.numberOfLines > 1 &&
+      css`
+        display: -webkit-box;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: ${props.numberOfLines};
+        -webkit-box-orient: vertical;
+        word-wrap: break-word;
+      `};
+
+    ${(props) =>
+      props.numberOfLines === 1 &&
+      css`
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      `}
   `,
 };
 
@@ -72,16 +77,16 @@ const S = {
 const Text = ({
   fontSize = 16,
   fontWeight,
+  isNoneLineHeight = false,
   color = "black",
   className,
   children,
   ...props
 }: React.PropsWithChildren<TextProps>) => {
-
   return (
     <S.Container
       fontSize={fontSize}
-      lineHeight={`${(fontSize) * 1.6}px`}
+      lineHeight={`${fontSize * (isNoneLineHeight ? 1 : 1.6)}px`}
       fontWeight={fontWeight}
       color={color}
       className={className}

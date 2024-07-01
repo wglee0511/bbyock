@@ -14,14 +14,16 @@ const S = {
 };
 
 const Main = () => {
-  
-  const TopNavigation = dynamic(() => import("@/containers/main/TopNavigation"), {
-    ssr: false,
-  });
+  const TopNavigation = dynamic(
+    () => import("@/containers/main/TopNavigation"),
+    {
+      ssr: false,
+    },
+  );
 
   return (
     <S.Container>
-      <TopNavigation/>
+      <TopNavigation />
       Main
     </S.Container>
   );

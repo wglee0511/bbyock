@@ -1,1 +1,1 @@
-export const isClientSide = typeof window === 'object';
+export const isClientSide = typeof window === "object";

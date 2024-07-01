@@ -1,14 +1,26 @@
 {
   "env": {
     "browser": true,
-    "node": true,
+    "node": true
   },
-  "extends": "airbnb-base",
   "rules": {
     "linebreak-style": 0,
+    "jsx-a11y/rule-name": 2
   },
   "extends": [
     "next/core-web-vitals",  
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:import/recommended",
+    "plugin:jsx-a11y/recommended",
     "plugin:react/recommended"
-  ]
+  ],
+  "settings": {
+    "import/extensions": [
+      ".js",
+      ".jsx",
+      ".ts",
+      ".tsx"
+    ]
+  },
 }
