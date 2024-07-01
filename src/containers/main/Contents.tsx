@@ -1,10 +1,18 @@
 import Divider from "@/components/Divider";
 import ContentsWrapper from "@/components/Template/ContentsWrapper";
 import Text from "@/components/Text";
+import {
+  DateOfBirth,
+  SaJu,
+  SajuElementCounts,
+  analyzeElements,
+  calculateSaJu,
+  getElementCounts,
+} from "@/lib/saju";
 import { CONTENT_MAX_WIDTH } from "@/style/base";
 import { COLORS } from "@/style/colors";
 import { map } from "lodash";
-import React, { ReactElement, ReactNode } from "react";
+import React, { ReactElement } from "react";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
 
@@ -53,12 +61,7 @@ const S = {
 };
 
 const Contents = () => {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit } = useForm();
 
   const genders: Gender[] = ["male", "female"];
 
