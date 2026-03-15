@@ -24,9 +24,19 @@ const S = {
     width: 100%;
   `,
   Button: styled.a`
-    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 28px;
     padding: 15px 40px;
-    background-color: ${COLORS.green};
+    background: linear-gradient(135deg, ${COLORS.primary}, ${COLORS.primaryHover});
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+    transition: all 0.3s;
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+    }
   `,
 };
 
@@ -41,11 +51,11 @@ const Description = () => {
 
   return (
     <S.Container>
-      <Text fontSize={20} fontWeight={400} color={COLORS.black}>
+      <Text fontSize={20} fontWeight={400} color={COLORS.gray100}>
         오행 분석결과
       </Text>
       <Divider vertical={21} />
-      <Text fontSize={20} fontWeight={400} color={COLORS.black}>
+      <Text fontSize={20} fontWeight={400} color={COLORS.gray100}>
         {`${user.name || ""}님의 오행은 ‘${koreanText(user.result.dominantElement)}’이며, 오행중 ‘${koreanText(user.result.dominantElement)}’가 많고 ‘${koreanText(user.result.neededElement || "earth")}’(이)가 부족합니다. `}
       </Text>
       <Divider vertical={21} />
@@ -63,7 +73,7 @@ const Description = () => {
       >
         <S.Wrapper>
           <S.Button target="_blank" rel="noopener noreferrer">
-            <Text fontSize={20} fontWeight={400} color={COLORS.white}>
+            <Text fontSize={20} fontWeight={600} color={COLORS.black}>
               부족한 오행 소품 구매하러 가기
             </Text>
           </S.Button>

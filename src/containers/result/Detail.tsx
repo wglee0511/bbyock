@@ -25,7 +25,8 @@ const S = {
     align-items: center;
     width: 100px;
     height: 110px;
-    border: 1px solid ${COLORS.black};
+    border: 1px solid ${COLORS.glassBorder};
+    border-radius: 12px;
   `,
 };
 
@@ -38,7 +39,7 @@ const Detail = () => {
     return (
       <S.Column>
         <Divider vertical={15} />
-        <Text fontSize={20} fontWeight={400} color={COLORS.black}>
+        <Text fontSize={20} fontWeight={400} color={COLORS.gray100}>
           {title}
         </Text>
         <Divider vertical={15} />
@@ -47,7 +48,7 @@ const Detail = () => {
             backgroundColor: COLORS_SA_JU[firstValue],
           }}
         >
-          <Text fontSize={40} fontWeight={400} color={COLORS.black}>
+          <Text fontSize={40} fontWeight={400} color={COLORS.gray100}>
             {SA_JU_KOREAN_ELEMENT[firstValue]}
           </Text>
         </S.ColorBox>
@@ -57,7 +58,7 @@ const Detail = () => {
             backgroundColor: COLORS_SA_JU[secondValue],
           }}
         >
-          <Text fontSize={40} fontWeight={400} color={COLORS.black}>
+          <Text fontSize={40} fontWeight={400} color={COLORS.gray100}>
             {SA_JU_KOREAN_ELEMENT[secondValue]}
           </Text>
         </S.ColorBox>

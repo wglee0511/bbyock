@@ -44,7 +44,7 @@ const Summary = () => {
   ) => {
     return (
       <S.Column>
-        <Text fontSize={20} fontWeight={400} color={COLORS.black}>
+        <Text fontSize={20} fontWeight={400} color={COLORS.gray100}>
           {title}
         </Text>
         <Divider vertical={20} />
@@ -73,7 +73,7 @@ const Summary = () => {
         </S.CircleContainer>
         <Divider vertical={20} />
         {bottom && (
-          <Text fontSize={20} fontWeight={400} color={COLORS.black}>
+          <Text fontSize={20} fontWeight={400} color={COLORS.gray100}>
             {bottom}
           </Text>
         )}

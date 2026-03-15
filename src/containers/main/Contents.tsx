@@ -12,26 +12,67 @@ import { useRouter } from "next/navigation";
 import React, { ReactElement } from "react";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
+import { Gender } from "@/types/form";
 
 const S = {
   Container: styled.div`
-    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
+    width: 100%;
     max-width: ${CONTENT_MAX_WIDTH}px;
-    height: calc(100vh - 170px);
+    padding: 40px;
+    background: ${COLORS.glassBg};
+    backdrop-filter: blur(16px);
+    border: 1px solid ${COLORS.glassBorder};
+    border-radius: 24px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    margin: 40px 0;
   `,
   Form: styled.form`
     width: 100%;
   `,
-  Input: styled.input``,
+  Input: styled.input`
+    accent-color: ${COLORS.primary};
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+  `,
   TextInput: styled.input`
     max-width: 287px;
+    width: 100%;
+    height: 48px;
+    padding: 0 16px;
+    background: rgba(0,0,0,0.2);
+    border: 1px solid ${COLORS.gray800};
+    border-radius: 12px;
+    color: ${COLORS.white};
+    font-size: 16px;
+    outline: none;
+    transition: all 0.2s;
+    color-scheme: dark;
+    &:focus {
+      border-color: ${COLORS.primary};
+      box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+    }
   `,
   NumberInput: styled.input`
-    max-width: 50px;
+    max-width: 60px;
+    height: 48px;
+    padding: 0 12px;
+    background: rgba(0,0,0,0.2);
+    border: 1px solid ${COLORS.gray800};
+    border-radius: 12px;
+    color: ${COLORS.white};
+    font-size: 16px;
+    outline: none;
+    transition: all 0.2s;
+    text-align: center;
+    &:focus {
+      border-color: ${COLORS.primary};
+      box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+    }
   `,
   InputContainer: styled.div`
     width: 100%;
@@ -46,14 +87,24 @@ const S = {
     gap: 20px;
   `,
   SummitButton: styled.input`
-    width: 200px;
-    height: 55px;
-    font-size: 20px;
-    color: ${COLORS.white};
-    font-weight: 400;
+    width: 220px;
+    height: 56px;
+    font-size: 18px;
+    color: ${COLORS.black};
+    font-weight: 600;
     border: none;
-    border-radius: 20px;
-    background-color: ${COLORS.green};
+    border-radius: 28px;
+    background: linear-gradient(135deg, ${COLORS.primary}, ${COLORS.primaryHover});
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+    transition: all 0.3s;
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+    }
+    &:active {
+      transform: translateY(0);
+    }
   `,
 };
 
@@ -66,9 +117,7 @@ const Contents = () => {
     const {
       birthDate,
       gender,
-      hasBirthDateTime,
       hour,
-      isLeapYear,
       isLunar,
       minute,
       name,
@@ -104,7 +153,7 @@ const Contents = () => {
       | React.JSX.Element[];
   }) => (
     <S.InputContainer>
-      <Text fontSize={20} fontWeight={400} color={COLORS.black}>
+      <Text fontSize={20} fontWeight={400} color={COLORS.gray100}>
         {text}
       </Text>
       <S.ContentsContainer>{components}</S.ContentsContainer>
@@ -129,7 +178,7 @@ const Contents = () => {
             })}
           />
           <Divider horizontal={15} />
-          <Text fontSize={20} fontWeight={400} color={COLORS.black}>
+          <Text fontSize={20} fontWeight={400} color={COLORS.gray100}>
             {gender}
           </Text>
         </div>
@@ -167,7 +216,7 @@ const Contents = () => {
                 >
                   <S.Input type="checkbox" {...register("isLunar")} />
                   <Divider horizontal={15} />
-                  <Text fontSize={20} fontWeight={400} color={COLORS.black}>
+                  <Text fontSize={20} fontWeight={400} color={COLORS.gray100}>
                     음력
                   </Text>
                 </div>
@@ -180,7 +229,7 @@ const Contents = () => {
                 >
                   <S.Input type="checkbox" {...register("isLeapYear")} />
                   <Divider horizontal={15} />
-                  <Text fontSize={20} fontWeight={400} color={COLORS.black}>
+                  <Text fontSize={20} fontWeight={400} color={COLORS.gray100}>
                     윤달
                   </Text>
                 </div>
@@ -195,7 +244,7 @@ const Contents = () => {
                   type="number"
                   {...register("hour", { max: 24 })}
                 />
-                <Text fontSize={20} fontWeight={400} color={COLORS.black}>
+                <Text fontSize={20} fontWeight={400} color={COLORS.gray100}>
                   :
                 </Text>
                 <S.NumberInput
@@ -211,7 +260,7 @@ const Contents = () => {
                 >
                   <S.Input type="checkbox" {...register("hasBirthDateTime")} />
                   <Divider horizontal={15} />
-                  <Text fontSize={20} fontWeight={400} color={COLORS.black}>
+                  <Text fontSize={20} fontWeight={400} color={COLORS.gray100}>
                     모름
                   </Text>
                 </div>

@@ -6,13 +6,18 @@ import styled from "styled-components";
 import { TopNavigationProps } from "./type";
 
 const S = {
-  container: styled.div`
+  container: styled.header`
     width: 100%;
     height: 85px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: ${COLORS.gray100};
+    background: ${COLORS.glassBg};
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid ${COLORS.glassBorder};
+    position: sticky;
+    top: 0;
+    z-index: 50;
   `,
   Inner: styled.div`
     display: flex;
@@ -27,13 +32,13 @@ const TopNavigation = ({ title }: TopNavigationProps) => {
         <Text
           fontSize={45}
           fontWeight={700}
-          color={COLORS.black}
+          color={COLORS.primary}
           isNoneLineHeight
         >
           뾲
         </Text>
         <Divider horizontal={22} />
-        <Text fontSize={20} fontWeight={400} color={COLORS.black}>
+        <Text fontSize={20} fontWeight={400} color={COLORS.gray100}>
           {title}
         </Text>
       </S.Inner>

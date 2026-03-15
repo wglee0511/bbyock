@@ -9,6 +9,7 @@ const S = {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 24px;
   `,
 };
 

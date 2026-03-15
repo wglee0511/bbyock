@@ -30,7 +30,7 @@ const Result = () => {
     if (isNil(user)) {
       router.push("/");
     }
-  }, [user]);
+  }, [user, router]);
 
   return (
     <S.Container>
